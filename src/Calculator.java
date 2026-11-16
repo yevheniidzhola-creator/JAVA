@@ -30,6 +30,10 @@ public class Calculator {
     JPanel displayPanel = new JPanel();
     JPanel buttonsPanel = new JPanel();
 
+    String A = "0";
+    String operator = null;
+    String B = null;
+
     Calculator() {
         frame.setSize(borderWidth, borderHeight);
         frame.setLocationRelativeTo(null);
@@ -104,8 +108,16 @@ public class Calculator {
 
                     } else if (Arrays.asList(topSymbols).contains(buttonValue)) {
                         if (buttonValue == "AC") {
+                            clearAll();
+                            displayLabel.setText("0");
                         } else if (buttonValue == "+/-") {
+                            double numDisplay =Double.parseDouble(displayLabel.getText());
+                            numDisplay *=-1;
+                            displayLabel.setText(removeZeroDecimal(numDisplay));
                         } else if (buttonValue == "%") {
+                            double numDisplay =Double.parseDouble(displayLabel.getText());
+                            numDisplay /=100;
+                            displayLabel.setText(removeZeroDecimal(numDisplay));
                         }
                     } else {
                         if (buttonValue == ".") {
@@ -124,5 +136,16 @@ public class Calculator {
             });
         }
         frame.setVisible(true);
+    }
+    void clearAll() {
+        A = "0";
+        operator = null;
+        B = null;
     };
+    String removeZeroDecimal(double numDisplay){
+        if(numDisplay %1== 0){
+            return Integer.toString((int)numDisplay);
+        }
+        return  Double.toString(numDisplay);
+    }
 }
