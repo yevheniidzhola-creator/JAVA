@@ -92,10 +92,37 @@ public class Calculator {
                     }
                 }
             });
+
             button.setBorder(new LineBorder(customBlack));
             buttonsPanel.add(button);
+
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    JButton button = (JButton) e.getSource();
+                    String buttonValue = button.getText();
+                    if (Arrays.asList(rightSymbols).contains(buttonValue)) {
+
+                    } else if (Arrays.asList(topSymbols).contains(buttonValue)) {
+                        if (buttonValue == "AC") {
+                        } else if (buttonValue == "+/-") {
+                        } else if (buttonValue == "%") {
+                        }
+                    } else {
+                        if (buttonValue == ".") {
+                            if (!displayLabel.getText().contains(buttonValue)) {
+                                displayLabel.setText(displayLabel.getText() + buttonValue);
+                            }
+                        } else if ("1234567890".contains(buttonValue)) {
+                            if (displayLabel.getText() == "0") {
+                                displayLabel.setText(buttonValue);
+                            } else {
+                                displayLabel.setText(displayLabel.getText() + buttonValue);
+                            }
+                        }
+                    }
+                }
+            });
         }
         frame.setVisible(true);
-
-    }
+    };
 }
